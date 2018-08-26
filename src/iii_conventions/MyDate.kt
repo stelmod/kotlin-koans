@@ -8,7 +8,8 @@ operator fun MyDate.compareTo(other: MyDate): Int =
                 this.dayOfMonth - other.dayOfMonth
             else this.month - other.month
         else this.year - other.year
-operator fun MyDate.rangeTo(other: MyDate): DateRange = todoTask27()
+
+operator fun MyDate.rangeTo(other: MyDate): DateRange = DateRange(this, other)
 
 enum class TimeInterval {
     DAY,
