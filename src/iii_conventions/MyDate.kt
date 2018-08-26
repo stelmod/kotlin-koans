@@ -11,11 +11,23 @@ operator fun MyDate.compareTo(other: MyDate): Int =
 
 operator fun MyDate.rangeTo(other: MyDate): DateRange = DateRange(this, other)
 
+operator fun MyDate.plus(timeInterval: TimeInterval): MyDate {
+    return this.addTimeIntervals(timeInterval, 1)
+}
+
+operator fun MyDate.plus(repeatedTimeInterval: RepeatedTimeInterval): MyDate {
+    return this.addTimeIntervals(repeatedTimeInterval.ti, repeatedTimeInterval.n)
+}
+
 enum class TimeInterval {
     DAY,
     WEEK,
     YEAR
 }
+
+operator fun TimeInterval.times(n: Int): RepeatedTimeInterval = RepeatedTimeInterval(this, n)
+
+class RepeatedTimeInterval(val ti: TimeInterval, val n: Int)
 
 class DateRange(val start: MyDate, val endInclusive: MyDate)
 
